@@ -4,7 +4,7 @@ from base.models import BaseModel
 from django.db import models
 from account.models import User
 
-class LongeivityParams(models.Model):
+class LongevityParams(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     blood_pressure = models.BooleanField(null=True,blank=True,default=None)
     heart_rate_variablity = models.BooleanField(null=True,blank=True,default=None)
@@ -18,7 +18,10 @@ class LongeivityParams(models.Model):
     lung_function = models.BooleanField(null=True,blank=True,default=None)
     blood_glucose = models.BooleanField(null=True,blank=True,default=None)
 
-class WellToryParams(models.Model):
+    class Meta:
+        verbose_name_plural = "LongevityParams"
+
+class WelltoryParams(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     heart_rate_variablity = models.BooleanField(null=True,blank=True,default=None)
     vo2max = models.BooleanField(null=True,blank=True,default=None)
@@ -26,9 +29,18 @@ class WellToryParams(models.Model):
     body_temperature = models.BooleanField(null=True,blank=True,default=None)
     blood_glucose = models.BooleanField(null=True,blank=True,default=None)
 
-class WellTorySubscription(models.Model):
+    class Meta:
+        verbose_name_plural = "WelltoryParams"
+
+class WelltorySubscription(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.email}"
 
 class LongevitySubscription(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.email}"
 

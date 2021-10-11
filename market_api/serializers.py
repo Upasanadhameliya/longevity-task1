@@ -1,8 +1,11 @@
 from base.serializers import ModelSerializer
-# from .models import MarketApi
+from .models import *
+from rest_framework import serializers
+from account.models import User
 
-# class MarketApiSerializers(ModelSerializer):
+class LongevitySerializer(ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=False,queryset=User.objects.all())
 
-#     class Meta:
-#         model = MarketApi
-#         read_only_fields = ("id","created_date_time","updated_date_time",)
+    class Meta:
+        model = LongevityParams
+        fields = '__all__'
