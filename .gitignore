@@ -154,3 +154,6 @@ migrations
 # vscode settings
 .vscode
 .env.yaml
+
+# extras
+thought_process.txt

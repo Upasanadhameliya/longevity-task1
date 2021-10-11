@@ -72,6 +72,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         """
         return self.first_name
 
+    def is_subscribed_to_longevity(self):
+        return hasattr(self, 'longevitysubscription')
+
+    def is_subscribed_to_welltory(self):
+        return hasattr(self, 'welltorysubscription')
+
 
 class BlackList(BaseModel):
     ip_address = models.GenericIPAddressField(_("IP address"))

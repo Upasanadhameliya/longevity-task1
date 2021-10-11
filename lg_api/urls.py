@@ -26,6 +26,7 @@ urlpatterns = (
     [
         path("admin/", admin.site.urls),
         path('auth/', views.obtain_auth_token),
+        path('market/',include('market_api.urls')),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     + documentation_url

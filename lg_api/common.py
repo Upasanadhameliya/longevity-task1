@@ -39,7 +39,7 @@ DJANGO_APP = [
 ]
 
 # currrent project app
-PROJECT_APP = ["account", "base"]
+PROJECT_APP = ["account", "base", "market_api"]
 
 # 3rd party app
 THIRD_PARTY_APP = [
