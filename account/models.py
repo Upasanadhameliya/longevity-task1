@@ -41,6 +41,20 @@ class UserManager(BaseUserManager):
 
         return self._create_user(email, password, **extra_fields)
 
+    def find(self,email:str):
+        queryset = self.get_queryset()
+
+        try:
+            instance = queryset.filter(email=email).first()
+        except ObjectDoesNotExist:
+            instance = None
+        finally:
+            return instance
+
+    def subscribe(self,email,subscription):
+        subscription.objects.create(user=self.find(email))
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_("email address"), unique=True)
     first_name = models.CharField(_("first name"), max_length=30, blank=True)
