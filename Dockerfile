@@ -19,3 +19,18 @@ RUN pip3 install --no-cache-dir  --force-reinstall -Iv grpcio==1.33.2
 COPY requirements.txt /code/
 RUN pip install wheel
 RUN pip install -r requirements.txt
+
+# copy project
+COPY . /code/
+
+#set volume
+VOLUME /code
+
+#set port mapping
+EXPOSE 8000
+
+# migrate - seed - run api
+CMD python manage.py makemigrations \
+    && python manage.py migrate \
+    && python manage.py seed \
+    && python manage.py runserver 0.0.0.0:8000
