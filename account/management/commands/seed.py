@@ -57,6 +57,9 @@ class Command(BaseCommand):
 
     def create_users(self):
         for email,subscriptions in self.demo_emails.items():
+            if self.user_class.objects.find(email):
+                self.stdout.write(self.style.HTTP_INFO(f"User : {email} Already created."))
+                continue
             self.user_class.objects.create_user(
                 email=email,
                 password=self.demo_pwd,

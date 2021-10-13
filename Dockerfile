@@ -16,7 +16,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     python3-dev python3-tk
 RUN pip3 install --no-cache-dir  --force-reinstall -Iv grpcio==1.33.2
-COPY requirements.txt /code/
+COPY requirements_docker.txt /code/requirements.txt
 RUN pip install wheel
 RUN pip install -r requirements.txt
 
