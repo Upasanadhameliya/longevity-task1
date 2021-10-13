@@ -18,14 +18,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include # noqa
-from rest_framework.authtoken import views
+# from rest_framework.authtoken import views
+
 
 from .documentation import documentation_url
+from .auth import SwaggerAuthToken
 
 urlpatterns = (
     [
         path("admin/", admin.site.urls),
-        path('auth/', views.obtain_auth_token),
+        path('auth/', SwaggerAuthToken.as_view()),
         path('market/',include('market_api.urls')),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
